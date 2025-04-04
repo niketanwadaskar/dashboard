@@ -75,9 +75,9 @@ const RunList: React.FC = () => {
                 className="w-full appearance-none px-4 py-2 rounded-xl bg-gray-50 border border-gray-300 text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 shadow-sm transition"
               >
                 <option value="All">All</option>
-                <option value="Completed">Completed</option>
-                <option value="Failed">Failed</option>
-                <option value="Running">Running</option>
+                <option value="completed">Completed</option>
+                <option value="failed">Failed</option>
+                <option value="running">Running</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
                 <svg
