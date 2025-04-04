@@ -4,11 +4,11 @@ import { fetchRuns } from "../utils/fetchRuns";
 import Loader from "../components/Loader";
 
 interface Run {
-  id: number;
+  id: string;
   name: string;
   status: string;
   date: string;
-  [key: string]: any;
+  [key: string]: string;
 }
 
 const RunList: React.FC = () => {
@@ -24,7 +24,7 @@ const RunList: React.FC = () => {
     setLoading(true);
     fetchRuns()
       .then((res) => res)
-      .then((data) => setRuns(data as any[]))
+      .then((data) => setRuns(data as unknown as Run[]))
       .catch((err) => console.error("Failed to load data", err))
       .finally(() => setLoading(false));
   }, []);

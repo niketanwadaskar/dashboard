@@ -4,18 +4,18 @@ import { fetchRunById } from "../utils/fetchRuns";
 import Loader from "../components/Loader";
 
 interface Run {
-  id: number;
+  id: string;
   name: string;
   status: string;
   date: string;
-  [key: string]: any;
+  [key: string]: string;
 }
 
 const statusMap = {
   failed: "red",
   running: "yellow",
   completed: "green",
-} as { [key: string]: any };
+} as { [key: string]: unknown };
 const RunDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,11 +24,15 @@ const RunDetails: React.FC = () => {
   const [showViewer, setShowViewer] = useState(true);
 
   useEffect(() => {
-    id &&
-      fetchRunById(id).then((data) => {
-        //@ts-ignore
-        setRun(data);
-      });
+    if (id) {
+      fetchRunById(id)
+        .then((data: unknown) => {
+          return setRun((data as Run) ?? null);
+        })
+        .catch(() => {
+          setRun(null);
+        });
+    }
   }, [id]);
 
   const changeColor = (color: string) => {
@@ -58,7 +62,7 @@ const RunDetails: React.FC = () => {
           {Object.entries(run).map(([key, value]) => (
             <div key={key} className="text-sm text-gray-700">
               <strong className="capitalize text-gray-900">{key}:</strong>{" "}
-              {value as any}
+              {value}
             </div>
           ))}
         </div>
@@ -100,6 +104,8 @@ const RunDetails: React.FC = () => {
                   ref={iframeRef}
                   src={`/viewer.html?name=${encodeURIComponent(
                     run.name
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-expect-error
                   )}&color=${encodeURIComponent(statusMap[run.status])}`}
                   style={{
                     width: "100%",
