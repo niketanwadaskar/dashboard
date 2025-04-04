@@ -16,7 +16,7 @@ const RunList: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState("All");
-  const [sortBy, setSortBy] = useState("DateDesc");
+  const [sortBy, setSortBy] = useState("DateAsc");
 
   const runsPerPage = 5;
 
