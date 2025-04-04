@@ -5,7 +5,8 @@
       "status": "completed",
       "date": "2025-04-01",
       "description": "First run description",
-      "duration": "2h 15m"
+      "duration": "2h 15m",
+      "modelUrl":"https://models.babylonjs.com/CornellBox/glTF/"
     },
     {
       "id": "run2",

@@ -1,5 +1,5 @@
 // src/data/fetchRuns.ts
-import runs from './runs.json'
+import runs from '../data/runs.json'
 
 export type Run = {
   id: string
@@ -8,6 +8,7 @@ export type Run = {
   date: string
   description: string
   duration: string
+  modelUrl?: string
 }
 
 export const fetchRuns = (): Promise<Run[]> => {

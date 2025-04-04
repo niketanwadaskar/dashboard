@@ -1,15 +1,15 @@
-// src/App.tsx
-import { Routes, Route } from 'react-router-dom'
-import ListPage from './pages/ListPage'
-import DetailsPage from './pages/DetailsPage'
+import { Routes, Route } from "react-router-dom";
+import RunList from "./pages/RunList";
+import RunDetails from "./pages/RunDetails";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<ListPage />} />
-      <Route path="/run/:id" element={<DetailsPage />} />
+      <Route path="/" element={<RunList />} />
+      <Route path="/details/:id" element={<RunDetails />} />
     </Routes>
-  )
+  );
 }
+
 
 export default App
