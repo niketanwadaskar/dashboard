@@ -21,7 +21,7 @@ const RunList: React.FC = () => {
     setLoading(true);
     fetchRuns()
       .then((res) => res)
-      .then((data) => setRuns(data))
+      .then((data) => setRuns(data as any))
       .catch((err) => console.error("Failed to load data", err))
       .finally(() => setLoading(false));
   }, []);
@@ -31,7 +31,7 @@ const RunList: React.FC = () => {
     currentPage * runsPerPage
   );
 
-  if (loading) return <Loader text="Loading runs..." />;
+  if (loading) return <Loader />;
 
   const totalPages = Math.ceil(runs.length / runsPerPage);
 

@@ -12,10 +12,10 @@ interface Run {
 }
 
 const statusMap = {
-  "failed":"red",
-  "running":"yellow",
-  "completed":"green"
-}
+  failed: "red",
+  running: "yellow",
+  completed: "green",
+} as { [key: string]: any };
 const RunDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,8 +37,8 @@ const RunDetails: React.FC = () => {
       "*"
     );
   };
-  
-  if (!run) return <Loader/>;
+
+  if (!run) return <Loader />;
 
   return (
     <div className="p-6 space-y-6 max-w-screen-xl mx-auto">
@@ -57,7 +57,8 @@ const RunDetails: React.FC = () => {
           <h2 className="text-xl font-semibold text-indigo-600">Details</h2>
           {Object.entries(run).map(([key, value]) => (
             <div key={key} className="text-sm text-gray-700">
-              <strong className="capitalize text-gray-900">{key}:</strong> {value as any}
+              <strong className="capitalize text-gray-900">{key}:</strong>{" "}
+              {value as any}
             </div>
           ))}
         </div>
@@ -97,7 +98,9 @@ const RunDetails: React.FC = () => {
               <div className="rounded-lg overflow-hidden shadow-inner border border-gray-300">
                 <iframe
                   ref={iframeRef}
-                  src={`/viewer.html?name=${encodeURIComponent(run.name)}&color=${encodeURIComponent(statusMap[run.status] )}`}
+                  src={`/viewer.html?name=${encodeURIComponent(
+                    run.name
+                  )}&color=${encodeURIComponent(statusMap[run.status])}`}
                   style={{
                     width: "100%",
                     height: "350px",

@@ -1,54 +1,83 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🔮 Babylon.js 3D Text Viewer
 
-Currently, two official plugins are available:
+A slick web-based 3D viewer built with [Babylon.js](https://www.babylonjs.com/) that displays dynamic, glowing 3D text on a rotating plane. Customize the text and glow color via URL parameters or postMessage events — perfect for dashboards, presentations, or interactive UIs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ✨ Dynamic glowing 3D text
+- 🎨 Custom color via `?color=` query param or real-time messaging
+- 🌀 Smooth rotation animation
+- 🧼 Transparent background with a subtle shadow and base
+- 🎥 ArcRotateCamera controls with zoom limits
+- 💬 Wraps and centers long text
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠️ Tech Stack
+
+- [Babylon.js](https://www.babylonjs.com/)
+- HTML5 Canvas
+- JavaScript
+
+---
+
+## 📦 How to Use
+
+### 1. Clone or Download the Project
+
+```bash
+git clone https://github.com/your-username/babylon-3d-text-viewer.git
+cd babylon-3d-text-viewer
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Open `index.html` in the browser
+
+> No build tools required — it’s vanilla and ready to go.
+
+---
+
+## 🧪 Usage Examples
+
+### ➕ Load with text and color:
+
+```
+http://localhost/index.html?name=Hello%20World&color=deepskyblue
+```
+
+### 🎯 Update color in real-time:
 
 ```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+window.postMessage({ type: "changeColor", color: "orange" }, "*");
 ```
+
+---
+
+## 📁 File Structure
+
+```
+📁 project-root/
+├── index.html
+├── viewer.js     # Main Babylon.js logic
+├── README.md
+```
+
+---
+
+## 💡 Customization Tips
+
+- ✅ Change font style in `viewer.js`:  
+  ```js
+  const font = "bold 120px Segoe UI";
+  ```
+
+- ✅ Modify plane sizes or camera limits for different layouts.
+- ✅ Integrate inside an iframe or embed in dashboards easily.
+
+---
+
+## 🧼 License
+
+MIT — do what you want, just don’t blame me if you break the universe.
