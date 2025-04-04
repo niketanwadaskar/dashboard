@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchRunById } from "../utils/fetchRuns";
+import Loader from "../components/Loader";
 
 interface Run {
   id: number;
@@ -10,6 +11,11 @@ interface Run {
   [key: string]: any;
 }
 
+const statusMap = {
+  "failed":"red",
+  "running":"yellow",
+  "completed":"green"
+}
 const RunDetails: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -31,8 +37,8 @@ const RunDetails: React.FC = () => {
       "*"
     );
   };
-
-  if (!run) return <div className="p-6 text-center">Loading...</div>;
+  
+  if (!run) return <Loader/>;
 
   return (
     <div className="p-6 space-y-6 max-w-screen-xl mx-auto">
@@ -91,7 +97,7 @@ const RunDetails: React.FC = () => {
               <div className="rounded-lg overflow-hidden shadow-inner border border-gray-300">
                 <iframe
                   ref={iframeRef}
-                  src={`/viewer.html?name=${encodeURIComponent(run.name)}`}
+                  src={`/viewer.html?name=${encodeURIComponent(run.name)}&color=${encodeURIComponent(statusMap[run.status] )}`}
                   style={{
                     width: "100%",
                     height: "350px",

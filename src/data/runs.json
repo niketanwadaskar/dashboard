@@ -1,28 +1,127 @@
 [
-    {
+  {
       "id": "run1",
-      "name": "Test Run 1",
+      "name": "User Login Test",
+      "status": "completed",
+      "date": "2025-03-29",
+      "description": "Tested user login with various authentication methods.",
+      "duration": "1h 15m",
+      "modelUrl": "https://models.babylonjs.com/CornellBox/glTF/"
+  },
+  {
+      "id": "run2",
+      "name": "Data Import Performance",
+      "status": "running",
+      "date": "2025-03-30",
+      "description": "Evaluating the time it takes to import large datasets into the system.",
+      "duration": "2h 30m"
+  },
+  {
+      "id": "run3",
+      "name": "API Load Testing",
+      "status": "failed",
+      "date": "2025-03-31",
+      "description": "API failed under heavy load due to rate-limiting issues.",
+      "duration": "50m"
+  },
+  {
+      "id": "run4",
+      "name": "Graph Rendering Speed",
       "status": "completed",
       "date": "2025-04-01",
-      "description": "First run description",
-      "duration": "2h 15m",
-      "modelUrl":"https://models.babylonjs.com/CornellBox/glTF/"
-    },
-    {
-      "id": "run2",
-      "name": "Test Run 2",
-      "status": "running",
+      "description": "Tested the performance of graph rendering in the dashboard under normal conditions.",
+      "duration": "1h 45m",
+      "modelUrl": "https://models.babylonjs.com/CornellBox/glTF/"
+  },
+  {
+      "id": "run5",
+      "name": "Mobile UI Responsiveness",
+      "status": "completed",
       "date": "2025-04-02",
-      "description": "Second run in progress",
-      "duration": "1h 30m"
-    },
-    {
-      "id": "run3",
-      "name": "Test Run 3",
-      "status": "failed",
+      "description": "Ensured that all UI elements scale properly on mobile devices.",
+      "duration": "1h 10m"
+  },
+  {
+      "id": "run6",
+      "name": "Database Query Optimization",
+      "status": "completed",
       "date": "2025-04-03",
-      "description": "Run failed midway",
+      "description": "Ran tests on newly optimized queries to check speed improvement.",
+      "duration": "2h 20m",
+      "modelUrl": "https://models.babylonjs.com/CornellBox/glTF/"
+  },
+  {
+      "id": "run7",
+      "name": "Error Handling Test",
+      "status": "running",
+      "date": "2025-04-04",
+      "description": "Tested system's ability to handle errors gracefully during unpredictable input.",
+      "duration": "1h 5m"
+  },
+  {
+      "id": "run8",
+      "name": "User Permissions Validation",
+      "status": "completed",
+      "date": "2025-04-05",
+      "description": "Checked whether different user roles have appropriate access to resources.",
+      "duration": "2h 10m"
+  },
+  {
+      "id": "run9",
+      "name": "Image Upload Functionality",
+      "status": "failed",
+      "date": "2025-04-06",
+      "description": "Upload failed when attempting to process files over 10MB.",
       "duration": "45m"
-    }
-  ]
-  
+  },
+  {
+      "id": "run10",
+      "name": "Multi-User Simulation",
+      "status": "completed",
+      "date": "2025-04-07",
+      "description": "Tested system's performance when multiple users are interacting simultaneously.",
+      "duration": "3h 15m",
+      "modelUrl": "https://models.babylonjs.com/CornellBox/glTF/"
+  },
+  {
+      "id": "run11",
+      "name": "System Recovery Test",
+      "status": "running",
+      "date": "2025-04-08",
+      "description": "Tested how the system recovers from crashes or unexpected shutdowns.",
+      "duration": "2h 5m"
+  },
+  {
+      "id": "run12",
+      "name": "Cross-Browser Compatibility",
+      "status": "failed",
+      "date": "2025-04-09",
+      "description": "Some elements didn't render correctly in Safari on macOS.",
+      "duration": "1h"
+  },
+  {
+      "id": "run13",
+      "name": "Network Latency Test",
+      "status": "completed",
+      "date": "2025-04-10",
+      "description": "Evaluated the effect of network latency on real-time data synchronization.",
+      "duration": "2h 25m",
+      "modelUrl": "https://models.babylonjs.com/CornellBox/glTF/"
+  },
+  {
+      "id": "run14",
+      "name": "Security Penetration Test",
+      "status": "completed",
+      "date": "2025-04-11",
+      "description": "Tested the system for vulnerabilities using automated penetration testing tools.",
+      "duration": "4h 5m"
+  },
+  {
+      "id": "run15",
+      "name": "Content Delivery Optimization",
+      "status": "running",
+      "date": "2025-04-12",
+      "description": "Tested improvements in content delivery speed through a CDN.",
+      "duration": "2h 50m"
+  }
+]

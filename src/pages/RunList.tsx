@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchRuns } from "../utils/fetchRuns";
+import Loader from "../components/Loader";
 
 interface Run {
   id: number;
@@ -12,14 +13,17 @@ interface Run {
 
 const RunList: React.FC = () => {
   const [runs, setRuns] = useState<Run[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const runsPerPage = 5;
 
   useEffect(() => {
+    setLoading(true);
     fetchRuns()
       .then((res) => res)
       .then((data) => setRuns(data))
-      .catch((err) => console.error("Failed to load data", err));
+      .catch((err) => console.error("Failed to load data", err))
+      .finally(() => setLoading(false));
   }, []);
 
   const paginatedRuns = runs.slice(
@@ -27,49 +31,66 @@ const RunList: React.FC = () => {
     currentPage * runsPerPage
   );
 
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl text-green font-bold mb-4">Run List</h1>
-      <table className="w-full border text-left">
-        <thead>
-          <tr className="bg-gray-200">
-            <th className="p-2">ID</th>
-            <th className="p-2">Name</th>
-            <th className="p-2">Status</th>
-            <th className="p-2">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {paginatedRuns.map((run) => (
-            <tr key={run.id} className="border-t">
-              <td className="p-2">{run.id}</td>
-              <td className="p-2">
-                <Link to={`/details/${run.id}`} className="text-blue-600 hover:underline">
-                  {run.name}
-                </Link>
-              </td>
-              <td className="p-2">{run.status}</td>
-              <td className="p-2">{run.date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  if (loading) return <Loader text="Loading runs..." />;
 
-      <div className="mt-4 flex gap-4">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((p) => p - 1)}
-          className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <button
-          disabled={currentPage * runsPerPage >= runs.length}
-          onClick={() => setCurrentPage((p) => p + 1)}
-          className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
-        >
-          Next
-        </button>
+  const totalPages = Math.ceil(runs.length / runsPerPage);
+
+  return (
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-3xl text-green-700 font-semibold mb-6 text-center">Run List</h1>
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+        <table className="w-full border-collapse text-sm text-gray-700">
+          <thead>
+            <tr className="bg-green-100 text-left">
+              <th className="py-3 px-4 text-gray-600">ID</th>
+              <th className="py-3 px-4 text-gray-600">Name</th>
+              <th className="py-3 px-4 text-gray-600">Status</th>
+              <th className="py-3 px-4 text-gray-600">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {paginatedRuns.map((run) => (
+              <tr key={run.id} className="hover:bg-gray-50 transition-all duration-300">
+                <td className="py-2 px-4 border-t">{run.id}</td>
+                <td className="py-2 px-4 border-t">
+                  <Link
+                    to={`/details/${run.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {run.name}
+                  </Link>
+                </td>
+                <td className="py-2 px-4 border-t">{run.status}</td>
+                <td className="py-2 px-4 border-t">{run.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div className="mt-6 flex justify-between items-center">
+          {/* Pagination Info */}
+          <div className="text-gray-600">
+            <span>Page {currentPage} of {totalPages}</span>
+          </div>
+
+          {/* Pagination Controls */}
+          <div className="flex gap-4">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500 disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md transition-colors hover:bg-blue-500 disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
