@@ -1,0 +1,27 @@
+[
+    {
+      "id": "run1",
+      "name": "Test Run 1",
+      "status": "completed",
+      "date": "2025-04-01",
+      "description": "First run description",
+      "duration": "2h 15m"
+    },
+    {
+      "id": "run2",
+      "name": "Test Run 2",
+      "status": "running",
+      "date": "2025-04-02",
+      "description": "Second run in progress",
+      "duration": "1h 30m"
+    },
+    {
+      "id": "run3",
+      "name": "Test Run 3",
+      "status": "failed",
+      "date": "2025-04-03",
+      "description": "Run failed midway",
+      "duration": "45m"
+    }
+  ]
+  
