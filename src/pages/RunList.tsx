@@ -29,7 +29,7 @@ const RunList: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Run List</h1>
+      <h1 className="text-2xl text-green font-bold mb-4">Run List</h1>
       <table className="w-full border text-left">
         <thead>
           <tr className="bg-gray-200">
