@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchRuns } from "../utils/fetchRuns";
 import Loader from "../components/Loader";
+import ErrorUI from "../components/ErrorUI";
 
 interface Run {
   id: string;
@@ -14,6 +15,7 @@ interface Run {
 const RunList: React.FC = () => {
   const [runs, setRuns] = useState<Run[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [statusFilter, setStatusFilter] = useState("All");
   const [sortBy, setSortBy] = useState("DateAsc");
@@ -21,12 +23,21 @@ const RunList: React.FC = () => {
   const runsPerPage = 5;
 
   useEffect(() => {
-    setLoading(true);
-    fetchRuns()
-      .then((res) => res)
-      .then((data) => setRuns(data as unknown as Run[]))
-      .catch((err) => console.error("Failed to load data", err))
-      .finally(() => setLoading(false));
+    const loadRuns = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await fetchRuns();
+        setRuns(data as unknown as Run[]);
+      } catch (err) {
+        console.error("Failed to load data", err);
+        setError("Oops! Something went wrong while fetching runs.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRuns();
   }, []);
 
   const filteredRuns = runs.filter((run) => {
@@ -50,6 +61,7 @@ const RunList: React.FC = () => {
 
   const totalPages = Math.ceil(filteredRuns.length / runsPerPage);
 
+  if (error) return <ErrorUI error={error} />;
   if (loading) return <Loader />;
 
   return (
